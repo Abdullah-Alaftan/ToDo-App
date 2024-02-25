@@ -1,38 +1,64 @@
 //starting up
-const todos = ["clean the apartment", "go to the gym"];
+let todos = ["clean the apartment", "go to the gym"];
 const form = document.querySelector(".todo-form");
-const todoContainer = document.querySelector(".container");
 const ul = document.createElement("ul");
-ul.classList.add("todos");
-todoContainer.appendChild(ul);
+function rendertodos(array) {
+  const todoContainer = document.querySelector(".container");
 
-todos.forEach((elemnt) => {
+  ul.classList.add("todos");
+  todoContainer.appendChild(ul);
+
+  array.forEach((task) => {
+    const li = document.createElement("li");
+    const span = document.createElement("span");
+    const deletebtn = document.createElement("button");
+    deletebtn.textContent = "delete";
+    deletebtn.addEventListener("click", (e) => {
+      const value = e.target.parentNode.querySelector("span").textContent;
+      const selecttodo = e.target.previousSibling.textContent;
+      removetodo(selecttodo);
+    });
+    li.classList.add("todo");
+    span.textContent = task;
+    ul.appendChild(li);
+    li.appendChild(span);
+    li.appendChild(deletebtn);
+  });
+}
+
+function addtodo() {
+  const todoContainer = document.querySelector(".todos");
+  const value = document.querySelector(".todo-input").value;
   const li = document.createElement("li");
-  li.classList.add("todo");
-  li.textContent = elemnt;
-  ul.appendChild(li);
-});
+  const span = document.createElement("span");
+  const deletebtn = document.createElement("button");
+  deletebtn.textContent = "delete";
+  //
+  todos.push(value);
 
-// 1. get the button to add an event listner
+  li.classList.add("todo");
+  span.textContent = value;
+  li.appendChild(span);
+  li.appendChild(deletebtn);
+  todoContainer.appendChild(li);
+}
 const addtodobtn = document.querySelector("#submit-btn");
 console.log("addtodobtn:", addtodobtn);
-
-// 2. add event listner to the button so when we click we can do stuff
 addtodobtn.addEventListener("click", function (e) {
   console.log("submitting.....");
-  const todoContainer = document.querySelector(".todos");
-  // 3. get the value from the input
-  const value = document.querySelector(".todo-input").value;
-
-  // create li tag
-  const li = document.createElement("li");
-  // add value to li tag
-  li.textContent = value;
-  li.classList.add("todo");
-
-  // send the li tag to HTML
-  todoContainer.appendChild(li);
-
+  addtodo();
   // DO NOT refresh the page
   e.preventDefault();
+});
+function removetodo(selecttodo) {
+  const filteredtodo = todos.filter((todo) => {
+    return todo !== selecttodo;
+  });
+  ul.innerHTML = "";
+  todos = filteredtodo;
+  rendertodos(filteredtodo);
+}
+
+window.addEventListener("load", () => {
+  rendertodos(todos);
 });
