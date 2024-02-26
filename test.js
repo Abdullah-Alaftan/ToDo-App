@@ -1,6 +1,7 @@
 let todos = ["clean the apartment", "go to the gym"];
 const form = document.querySelector(".todo-form");
 const ul = document.createElement("ul");
+
 function rendertodos(array) {
   const todoContainer = document.querySelector(".container");
 
