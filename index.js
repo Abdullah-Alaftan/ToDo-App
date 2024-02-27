@@ -1,7 +1,10 @@
-let todos;
+let todos = [];
 
-if (localStorage.getItem('todos') && JSON.parse(localStorage.getItem('todos')).length > 0) {
-  todos = JSON.parse(localStorage.getItem('todos'));
+if (
+  localStorage.getItem("todos") &&
+  JSON.parse(localStorage.getItem("todos")).length > 0
+) {
+  todos = JSON.parse(localStorage.getItem("todos"));
 } else {
   todos = [
     {
@@ -27,10 +30,10 @@ function rendertodos(array) {
     const description = document.createElement("p");
     const deletebtn = document.createElement("button");
     const editbtn = document.createElement("button");
-    const checkbox = document.createElement("input"); 
+    const checkbox = document.createElement("input");
     deletebtn.textContent = "delete";
     editbtn.textContent = "edit";
-    checkbox.type = "checkbox"; 
+    checkbox.type = "checkbox";
     deletebtn.addEventListener("click", (e) => {
       const selecttodo = title.textContent;
       removetodo(selecttodo);
@@ -60,7 +63,7 @@ function rendertodos(array) {
     li.appendChild(editbtn);
     ul.appendChild(li);
   });
-  localStorage.setItem('todos', JSON.stringify(todos));
+  localStorage.setItem("todos", JSON.stringify(todos));
 }
 function addtodo() {
   const todoContainer = document.querySelector(".todos");
@@ -70,11 +73,11 @@ function addtodo() {
   const span = document.createElement("span");
   const description = document.createElement("p");
   const deletebtn = document.createElement("button");
-  const editbtn = document.createElement("button"); 
-  const checkbox = document.createElement("input"); 
+  const editbtn = document.createElement("button");
+  const checkbox = document.createElement("input");
   deletebtn.textContent = "delete";
-  editbtn.textContent = "edit"; 
-  checkbox.type = "checkbox"; 
+  editbtn.textContent = "edit";
+  checkbox.type = "checkbox";
   deletebtn.addEventListener("click", (e) => {
     e.preventDefault();
     const selecttodo = span.textContent;
@@ -84,7 +87,11 @@ function addtodo() {
     const newTitle = prompt("Enter new title");
     const newDescription = prompt("Enter new description");
     if (newTitle && newDescription) {
-      const index = todos.findIndex(todo => todo.title === span.textContent && todo.description === description.textContent);
+      const index = todos.findIndex(
+        (todo) =>
+          todo.title === span.textContent &&
+          todo.description === description.textContent
+      );
       todos[index] = { title: newTitle, description: newDescription };
       rendertodos(todos);
     }
@@ -109,7 +116,7 @@ function addtodo() {
   li.appendChild(deletebtn);
   li.appendChild(editbtn);
   todoContainer.appendChild(li);
-  localStorage.setItem('todos', JSON.stringify(todos));
+  localStorage.setItem("todos", JSON.stringify(todos));
 }
 const addtodobtn = document.querySelector("#submit-btn");
 addtodobtn.addEventListener("click", function (e) {
