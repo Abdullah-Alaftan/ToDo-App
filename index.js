@@ -8,12 +8,12 @@ if (
 } else {
   todos = [
     {
-      title: "plese work",
-      description: "ihave been trying work please",
+      title: "go to the gym",
+      description: "shoulder workout and abs",
     },
     {
-      title: "plssss",
-      description: "i have been trying workkkkkk please",
+      title: "cinema",
+      description: "go to the cinema with my brother today",
     },
   ];
 }

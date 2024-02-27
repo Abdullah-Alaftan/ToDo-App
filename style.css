@@ -1,11 +1,8 @@
-/* Styles for the todo list */
 .todos {
   list-style-type: none;
   padding: 0;
   width: 200px;
 }
-
-/* Styles for each todo item */
 .todo {
   border: 1px solid #ddd;
   margin-bottom: 10px;
@@ -13,33 +10,24 @@
   border-radius: 5px;
   background-color: #f9f9f9;
 }
-
-/* Styles for the title of each todo item */
 .todo span {
   font-weight: bold;
 }
-
-/* Styles for the description of each todo item */
 .todo p {
   margin: 0;
 }
-
-/* Styles for the delete button */
 .todo button {
   margin-top: 10px;
-  margin-right: 10px; /* Add right margin to the delete button */
+  margin-right: 10px;
   background-color: #f44336;
   color: white;
   border: none;
   cursor: pointer;
   padding: 5px 10px;
 }
-
 .todo button:last-child {
   background-color: #4caf50;
 }
-
-/* Styles for the checkbox */
 .todo input[type="checkbox"] {
   margin-right: 10px;
 }
