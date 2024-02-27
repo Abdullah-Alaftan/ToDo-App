@@ -1,24 +1,26 @@
-let todos = [
-  {
-    title: "plese work",
-    description: "ihave been trying work please",
-  },
-  {
-    title: "plssss",
-    description: "i have been trying workkkkkk please",
-  },
-];
+let todos;
 
+if (localStorage.getItem('todos') && JSON.parse(localStorage.getItem('todos')).length > 0) {
+  todos = JSON.parse(localStorage.getItem('todos'));
+} else {
+  todos = [
+    {
+      title: "plese work",
+      description: "ihave been trying work please",
+    },
+    {
+      title: "plssss",
+      description: "i have been trying workkkkkk please",
+    },
+  ];
+}
 const form = document.querySelector(".todo-form");
 const ul = document.createElement("ul");
-
 function rendertodos(array) {
   const todoContainer = document.querySelector(".container");
-
   ul.classList.add("todos");
   ul.innerHTML = "";
   todoContainer.appendChild(ul);
-
   array.forEach((task, index) => {
     const li = document.createElement("li");
     const title = document.createElement("span");
@@ -53,11 +55,12 @@ function rendertodos(array) {
     li.classList.add("todo");
     title.textContent = task.title;
     description.textContent = task.description;
-    li.append(checkbox, title, description); 
+    li.append(checkbox, title, description);
     li.appendChild(deletebtn);
     li.appendChild(editbtn);
     ul.appendChild(li);
   });
+  localStorage.setItem('todos', JSON.stringify(todos));
 }
 function addtodo() {
   const todoContainer = document.querySelector(".todos");
@@ -102,10 +105,11 @@ function addtodo() {
   li.classList.add("todo");
   span.textContent = value;
   description.textContent = valueDescription;
-  li.append(checkbox, span, description); 
+  li.append(checkbox, span, description);
   li.appendChild(deletebtn);
-  li.appendChild(editbtn); 
+  li.appendChild(editbtn);
   todoContainer.appendChild(li);
+  localStorage.setItem('todos', JSON.stringify(todos));
 }
 const addtodobtn = document.querySelector("#submit-btn");
 addtodobtn.addEventListener("click", function (e) {
